@@ -7,30 +7,40 @@
         mc:Ignorable="d"
         Title="Calcultor" Height="560" Width="405">
     <Grid Margin="0,0,-8,0">
-        <Button Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="285,435,0,0" Height="80"/>
-        <Button Content="-" HorizontalAlignment="Left" Margin="285,350,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="*" HorizontalAlignment="Left" Margin="285,265,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="/" HorizontalAlignment="Left" Margin="285,180,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="^" HorizontalAlignment="Left" Margin="285,95,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="(" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content=")" HorizontalAlignment="Left" Margin="115,95,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="." HorizontalAlignment="Left" Margin="200,435,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="=" HorizontalAlignment="Left" Margin="30,436,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="C" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="200,95,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
 
-        <Button Content="1" HorizontalAlignment="Left" Margin="30,350,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="2" HorizontalAlignment="Left" Margin="115,350,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="3" HorizontalAlignment="Left" Margin="200,350,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="4" HorizontalAlignment="Left" Margin="30,265,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="5" HorizontalAlignment="Left" Margin="115,265,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="6" HorizontalAlignment="Left" Margin="200,265,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="7" HorizontalAlignment="Left" Margin="30,180,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="8" HorizontalAlignment="Left" Margin="115,180,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="9" HorizontalAlignment="Left" Margin="200,180,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="0" HorizontalAlignment="Left" Margin="115,435,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <TextBox IsReadOnly="True" Height="80" Margin="115,10,40,439"  Text="Text"  Width="250" HorizontalAlignment ="Center" VerticalAlignment="Center"
+        <TextBox Name="calculatorBox" Text="" IsReadOnly="True"
+                 Margin="0,10,40,439" Height="80" Width="241"
+                VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Right" 
+                    TextAlignment="Center" TextOptions.TextFormattingMode="Display" 
+                    VerticalContentAlignment="Center"
+                 
+                 BorderThickness="0" FontFamily="Cambria" FontSize="18"
                  />
+
+        <Button Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="285,435,0,0" Height="80"  Click="Button_Click_A"/>
+        <Button Content="-" HorizontalAlignment="Left" Margin="285,350,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_S"/>
+        <Button Content="*" HorizontalAlignment="Left" Margin="285,265,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_M"/>
+        <Button Content="/" HorizontalAlignment="Left" Margin="285,180,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_D"/>
+        <Button Content="^" HorizontalAlignment="Left" Margin="285,95,0,0" VerticalAlignment="Top" Width="80" Height="80"   Click="Button_Click_P"/>
+        <Button Content="(" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top" Width="80" Height="80"    Click="Button_Click_LB"/>
+        <Button Content=")" HorizontalAlignment="Left" Margin="115,95,0,0" VerticalAlignment="Top" Width="80" Height="80"   Click="Button_Click_RB"/>
+        <Button Content="." HorizontalAlignment="Left" Margin="30,435,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_Dot"/>
+        <Button Content="=" HorizontalAlignment="Left" Margin="200,435,0,0" VerticalAlignment="Top" Width="80" Height="80"   Click="Button_Click_E"/>
+        <Button Content="C" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Width="80" Height="80"    Click="Button_Click_C"/>
+        
+        <Button Content="Back" HorizontalAlignment="Left" Margin="200,95,0,0" VerticalAlignment="Top" Width="80" Height="80"    Click="Button_Click_Back"/>
+
+        <Button Content="1" HorizontalAlignment="Left" Margin="30,350,0,0" VerticalAlignment="Top" Width="80" Height="80"   Click="Button_Click_1"/>
+        <Button Content="2" HorizontalAlignment="Left" Margin="115,350,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_2"/>
+        <Button Content="3" HorizontalAlignment="Left" Margin="200,350,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_3"/>
+        <Button Content="4" HorizontalAlignment="Left" Margin="30,265,0,0" VerticalAlignment="Top" Width="80" Height="80"   Click="Button_Click_4"/>
+        <Button Content="5" HorizontalAlignment="Left" Margin="115,265,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_5"/>
+        <Button Content="6" HorizontalAlignment="Left" Margin="200,265,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_6"/>
+        <Button Content="7" HorizontalAlignment="Left" Margin="30,180,0,0" VerticalAlignment="Top" Width="80" Height="80"   Click="Button_Click_7"/>
+        <Button Content="8" HorizontalAlignment="Left" Margin="115,180,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_8"/>
+        <Button Content="9" HorizontalAlignment="Left" Margin="200,180,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_9"/>
+        <Button Content="0" HorizontalAlignment="Left" Margin="115,435,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_0"/>
+        
 
     </Grid>
 </Window>
