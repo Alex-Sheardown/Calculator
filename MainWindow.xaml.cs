@@ -48,13 +48,14 @@ namespace calculator
 				else if (char.IsDigit(c))
 				{
 
-					int n = 0;
+					string n = "";
 
 					// extract the characters and  
 					// store it in num  
-					while (char.IsDigit(c))
+					while (char.IsDigit(c) || c == '.')
 					{
-						n = n * 10 + (int)(c - '0');
+
+						n += c;
 						i++;
 
 						c = exp[i];
@@ -62,7 +63,7 @@ namespace calculator
 					i--;
 
 					// push the number in stack  
-					stack.Push(n);
+					stack.Push(Convert.ToDouble(n));
 				}
 				else if (stack.Count  == 1) {
 
@@ -108,12 +109,22 @@ namespace calculator
 						case '*':
 							stack.Push(val2 * val1);
 							break;
+
+						case '^':
+							stack.Push(Math.Pow(val2, val1));
+							break;
 					}
 				}
 			}
 			try
 			{
-				return stack.Pop().ToString();
+				double hold = stack.Pop();
+				if(hold >= double.MaxValue)
+				{
+					return "Calculation is to big";
+				}
+				double answer = Math.Round(hold, 2);
+				return answer.ToString();
 			}
 			catch(Exception e)
 			{
@@ -145,19 +156,41 @@ namespace calculator
 				char c = exp[i];
 
 				// If the scanned character is an operand, add it to output.
-				if (Char.IsLetterOrDigit(c) && i + 1 < exp.Length) {
+				if (Char.IsLetterOrDigit(c) && i + 1 < exp.Length)
+				{
 					char d = exp[i + 1];
 					if (Char.IsLetterOrDigit(d))
 					{
 						result += c;
 					}
+					else if (d == '.')
+					{
+						result += c;
+					}
 					else
 					{
-						result += c+" ";
+						result += c + " ";
 					}
 
 				}
-				else if (Char.IsLetterOrDigit(c)) {
+				
+				else if (c == '.' && i + 1 < exp.Length)
+				{
+					char d = exp[i + 1];
+					if (Char.IsLetterOrDigit(d))
+					{
+						result += c;
+					}
+
+				}
+				else if (c == '.')
+				{
+
+					
+				}
+
+				else if (Char.IsLetterOrDigit(c))
+				{
 
 					result += c + " ";
 
@@ -165,8 +198,9 @@ namespace calculator
 
 				// If the scanned character is an '(', push it to the stack.
 				else if (c == '(')
+				{
 					stack.Push(c);
-
+				}
 				//  If the scanned character is an ')', pop and output from the stack 
 				// until an '(' is encountered.
 				else if (c == ')')
