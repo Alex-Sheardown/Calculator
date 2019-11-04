@@ -57,7 +57,7 @@ namespace calculator
 
 						n += c;
 						i++;
-						Console.WriteLine("My message here " + c);
+						
 						c = exp[i];
 					}
 					i--;
@@ -234,14 +234,23 @@ namespace calculator
 						return "Invalid Expression"; // invalid expression                
 					else
 					{
-
 						stack.Pop();
-						char d = exp[i + 1];
-						if (Char.IsLetterOrDigit(d))
-						{
 
-							result += '*';
+						if (i + 1 < exp.Length)
+						{
+							
+							char d = exp[i + 1];
+							if (Char.IsLetterOrDigit(d))
+							{
+
+								
+								while (stack.Count != 0 && Prec('*') <= Prec(stack.Peek()))
+									result += stack.Pop() + " ";
+								stack.Push('*');
+								
+							}
 						}
+						//stack.Pop();
 					}
 				}
 				else // an operator is encountered
@@ -301,7 +310,6 @@ namespace calculator
 				hold = hold.Replace(" ", String.Empty); ;
 				calculatorBox.Text = hold;
 				hold = InfixToPostfix(hold);
-				//Console.WriteLine("My message here " + hold);
 				calculatorBox.Text = hold;
 				calculatorBox.Text = evaluatePostfix(calculatorBox.Text);
 				//calculatorBox.Text = answer.ToString();
