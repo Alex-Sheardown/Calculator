@@ -57,7 +57,7 @@ namespace calculator
 
 						n += c;
 						i++;
-
+						Console.WriteLine("My message here " + c);
 						c = exp[i];
 					}
 					i--;
@@ -67,10 +67,17 @@ namespace calculator
 				}
 				else if (stack.Count  == 1) {
 
-					if(c == '-')
+					double val1 = stack.Pop();
+					if (c == '-')
 					{
-						double val1 = stack.Pop();
+						
 						stack.Push(-val1);
+					}
+
+					if (c == '*')
+					{
+						
+						stack.Push(val1);
 					}
 
 				}
@@ -78,13 +85,20 @@ namespace calculator
 				// an operator, pop two elements  
 				// from stack apply the operator
 
-
-
-
 				else
 				{
-					double val1 = stack.Pop();
-					double val2 = stack.Pop();
+					double val1 = 0;
+					double val2 = 0;
+					try
+					{
+						val1 = stack.Pop();
+						val2 = stack.Pop();
+					}
+					catch
+					{
+						return "Syntax Error";
+					}
+					
 
 					switch (c)
 					{
@@ -124,7 +138,7 @@ namespace calculator
 					return "Calculation is to big";
 				}
 				double answer = Math.Round(hold, 2);
-				return answer.ToString();
+				return hold.ToString();
 			}
 			catch(Exception e)
 			{
@@ -139,17 +153,7 @@ namespace calculator
 
 			// initializing empty stack
 			Stack<char> stack = new Stack<char>();
-			/*
-			int num = 0;
-
-			if(exp[0] == '-' && exp.Length > 1)
-			{
-				if (Char.IsLetterOrDigit(exp[1])){
-					result += exp[0];
-				}
-				num = 1;
-			}
-			*/
+			
 
 			for (int i = 0; i < exp.Length; ++i)
 			{
@@ -174,32 +178,50 @@ namespace calculator
 
 				}
 				
-				else if (c == '.' && i + 1 < exp.Length)
+				else if (c == '.' )
 				{
-					char d = exp[i + 1];
-					if (Char.IsLetterOrDigit(d))
+					if (i + 1 < exp.Length)
 					{
-						result += c;
+						char d = exp[i + 1];
+						if (Char.IsLetterOrDigit(d))
+						{
+							result += c;
+						}
+						else
+						{
+							result += c + "0 ";
+							//exp.Insert(i,".0");
+						}
 					}
-
 				}
+				/*
 				else if (c == '.')
 				{
+					//result += c + '0' + ' ';
 
-					
 				}
-
+				*/
 				else if (Char.IsLetterOrDigit(c))
 				{
 
 					result += c + " ";
 
 				}
-
+				
 				// If the scanned character is an '(', push it to the stack.
 				else if (c == '(')
 				{
+					if((i - 1) >= 0){
+						char d = exp[i - 1];
+						
+						if (Char.IsLetterOrDigit(d) || d == ' ' || d == '.') {
+							while (stack.Count != 0 && Prec('*') <= Prec(stack.Peek()))
+								result += stack.Pop() + " ";
+							stack.Push('*');
+						}
+					}
 					stack.Push(c);
+				
 				}
 				//  If the scanned character is an ')', pop and output from the stack 
 				// until an '(' is encountered.
@@ -211,7 +233,16 @@ namespace calculator
 					if (stack.Count != 0 && stack.Peek() != '(')
 						return "Invalid Expression"; // invalid expression                
 					else
+					{
+
 						stack.Pop();
+						char d = exp[i + 1];
+						if (Char.IsLetterOrDigit(d))
+						{
+
+							result += '*';
+						}
+					}
 				}
 				else // an operator is encountered
 				{
@@ -253,14 +284,25 @@ namespace calculator
 		{
 			bool check1 = string.Equals(calculatorBox.Text, "Error");
 			bool check2 = string.Equals(calculatorBox.Text, "Undefined");
+			bool check3 = string.Equals(calculatorBox.Text, "Calculation is to big");
+			bool check4 = string.Equals(calculatorBox.Text, "Syntax Error");
 
-			if (check1 || check2)
+			if (check1 || check2 || check3 || check4)
 			{
 				calculatorBox.Text = "";
 			}
+			
+			
+				
+			
 			else
 			{
-				calculatorBox.Text = InfixToPostfix(calculatorBox.Text);
+				string hold = calculatorBox.Text;
+				hold = hold.Replace(" ", String.Empty); ;
+				calculatorBox.Text = hold;
+				hold = InfixToPostfix(hold);
+				//Console.WriteLine("My message here " + hold);
+				calculatorBox.Text = hold;
 				calculatorBox.Text = evaluatePostfix(calculatorBox.Text);
 				//calculatorBox.Text = answer.ToString();
 			}
@@ -271,8 +313,10 @@ namespace calculator
 		{
 			bool check1 = string.Equals(calculatorBox.Text, "Error");
 			bool check2 = string.Equals(calculatorBox.Text, "Undefined");
+			bool check3 = string.Equals(calculatorBox.Text, "Calculation is to big");
+			bool check4 = string.Equals(calculatorBox.Text, "Syntax Error");
 
-			if (check1 || check2)
+			if (check1 || check2 || check3 || check4)
 			{
 				calculatorBox.Text = "";
 			}

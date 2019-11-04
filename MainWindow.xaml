@@ -22,13 +22,13 @@
         <Button Content="*" HorizontalAlignment="Left" Margin="285,265,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_M"/>
         <Button Content="/" HorizontalAlignment="Left" Margin="285,180,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_D"/>
         <Button Content="^" HorizontalAlignment="Left" Margin="285,95,0,0" VerticalAlignment="Top" Width="80" Height="80"   Click="Button_Click_P"/>
-        <Button Content="(" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top" Width="80" Height="80"    Click="Button_Click_LB"/>
-        <Button Content=")" HorizontalAlignment="Left" Margin="115,95,0,0" VerticalAlignment="Top" Width="80" Height="80"   Click="Button_Click_RB"/>
+        <Button Content="(" HorizontalAlignment="Left" Margin="115,95,0,0" VerticalAlignment="Top" Width="80" Height="80"    Click="Button_Click_LB"/>
+        <Button Content=")" HorizontalAlignment="Left" Margin="200,95,0,0" VerticalAlignment="Top" Width="80" Height="80"   Click="Button_Click_RB"/>
         <Button Content="." HorizontalAlignment="Left" Margin="30,435,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_Dot"/>
         <Button Content="=" HorizontalAlignment="Left" Margin="200,435,0,0" VerticalAlignment="Top" Width="80" Height="80"   Click="Button_Click_E"/>
         <Button Content="C" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Width="80" Height="80"    Click="Button_Click_C"/>
         
-        <Button Content="Back" HorizontalAlignment="Left" Margin="200,95,0,0" VerticalAlignment="Top" Width="80" Height="80"    Click="Button_Click_Back"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top" Width="80" Height="80"    Click="Button_Click_Back"/>
 
         <Button Content="1" HorizontalAlignment="Left" Margin="30,350,0,0" VerticalAlignment="Top" Width="80" Height="80"   Click="Button_Click_1"/>
         <Button Content="2" HorizontalAlignment="Left" Margin="115,350,0,0" VerticalAlignment="Top" Width="80" Height="80"  Click="Button_Click_2"/>
