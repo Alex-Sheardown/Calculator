@@ -57,13 +57,26 @@ namespace calculator
 
 						n += c;
 						i++;
-						
-						c = exp[i];
+						try
+						{
+							c = exp[i];
+						}
+						catch
+						{
+							return "Syntax Error";
+						}
 					}
 					i--;
 
-					// push the number in stack  
-					stack.Push(Convert.ToDouble(n));
+					// push the number in stack 
+					try
+					{
+						stack.Push(Convert.ToDouble(n));
+					}
+					catch
+					{
+						return "Syntax Error";
+					}
 				}
 				else if (stack.Count  == 1) {
 
@@ -180,27 +193,52 @@ namespace calculator
 				
 				else if (c == '.' )
 				{
-					if (i + 1 < exp.Length)
+
+					if (i - 1 >= 0 && i + 1 < exp.Length)
 					{
+						char b = exp[i - 1];
 						char d = exp[i + 1];
-						if (Char.IsLetterOrDigit(d))
+						if (!Char.IsLetterOrDigit(d) && !Char.IsLetterOrDigit(b))
 						{
-							result += c;
+							return "Syntax Error";
 						}
+					}
+					else
+					{
+
+						if (i - 1 > 0)
+						{
+
+							char d = exp[i - 1];
+							if (!Char.IsLetterOrDigit(d))
+							{
+								result += 0;
+							}
+
+						}
+
 						else
 						{
-							result += c + "0 ";
-							//exp.Insert(i,".0");
+							result += 0;
+						}
+
+						if (i + 1 < exp.Length)
+						{
+
+							char d = exp[i + 1];
+							if (Char.IsLetterOrDigit(d))
+							{
+								result += c;
+							}
+							else
+							{
+								result += c + "0 ";
+								//exp.Insert(i,".0");
+							}
 						}
 					}
 				}
-				/*
-				else if (c == '.')
-				{
-					//result += c + '0' + ' ';
 
-				}
-				*/
 				else if (Char.IsLetterOrDigit(c))
 				{
 
@@ -234,13 +272,20 @@ namespace calculator
 						return "Invalid Expression"; // invalid expression                
 					else
 					{
-						stack.Pop();
+						try
+						{
+							stack.Pop();
+						}
+						catch
+						{
+							return "Invalid Expression";
+						}
 
 						if (i + 1 < exp.Length)
 						{
 							
 							char d = exp[i + 1];
-							if (Char.IsLetterOrDigit(d))
+							if (Char.IsLetterOrDigit(d) || d == '(')
 							{
 
 								
