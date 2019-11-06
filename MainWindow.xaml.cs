@@ -229,7 +229,7 @@ namespace calculator
 
 						else
 						{
-							result += 0;
+							//result += 0;
 						}
 
 						if (i + 1 < exp.Length)
