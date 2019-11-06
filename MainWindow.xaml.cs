@@ -47,13 +47,23 @@ namespace calculator
 				// the number. Push it to the stack.  
 				else if (char.IsDigit(c))
 				{
-
+					int keepTrack = 0;
 					string n = "";
 
 					// extract the characters and  
 					// store it in num  
 					while (char.IsDigit(c) || c == '.')
 					{
+
+
+						if(c == '.')
+						{
+							keepTrack++;
+							if(keepTrack > 1)
+							{
+								return "Syntax Error";
+							}
+						}
 
 						n += c;
 						i++;
