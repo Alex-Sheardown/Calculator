@@ -213,8 +213,8 @@ namespace calculator
 							return "Syntax Error";
 						}
 					}
-					else
-					{
+					
+					//if{
 
 						if (i - 1 > 0)
 						{
@@ -246,7 +246,7 @@ namespace calculator
 								//exp.Insert(i,".0");
 							}
 						}
-					}
+					//}
 				}
 
 				else if (Char.IsLetterOrDigit(c))
